@@ -1,0 +1,127 @@
+<!doctype html>
+<html ng-app="inquiry-app">
+<head>
+<meta charset="utf-8"/>
+
+      <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    
+            
+             
+          <script type="text/javascript" src="../js/angular.min.js"></script>
+            <script type="text/javascript" src="../js/angular-touch.min.js"></script>
+            <script type="text/javascript" src="../js/angular-sanitize.min.js"></script>           
+         
+              <script type="text/javascript" src="../js/inquiry-app.js"></script>          
+
+              <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.css">
+
+  <!-- ui-select files -->
+  <script src="../js/select/select.js"></script>
+  <link rel="stylesheet" href="../js/select/select.css">
+
+ 
+
+  <!-- Select2 theme -->
+  <link rel="stylesheet" href="../js/select/select.css">  
+              	
+
+</head>
+
+
+<body>
+
+<div class="conainer">
+	<p>询价</p>
+	
+		<div class="form-group">
+		   <label>供应商：富昌电子</label>		
+	     </div>
+
+		<br/>
+		
+		<button type="submit" class="btn btn-primary">询价</button>
+		<p>
+	
+	  <div ng-controller="InquiryController">
+
+	  	
+
+		<table class="table" >
+			<tr>
+				<td>料号</td>
+				<td>料号</td>
+				<td>制造商</td>
+				<td>数量</td>
+				<td>交期</td>
+				<td>备注</td>
+				<td>caozuo</td>
+			</tr>
+			
+			<tr ng-repeat="product in products">
+			<!-- 	<td>
+				 
+                <input type="text" ng-model-onblur ng-model="selectedCountry.originalObject.name"  ng-change="change()"/>
+               </td> -->
+
+				<td>
+
+				<ui-select ng-model="pn.selected" theme="selectize" ng-disabled="disabled" style="width: 300px;" title="Choose a pn">
+    				<ui-select-match placeholder="Select or search a pn in the list...">{{$select.selected.name}}</ui-select-match>
+   					 <ui-select-choices repeat="pn in pns | filter: $select.search">
+      					<span ng-bind-html="pn.name | highlight: $select.search"></span>     					 
+  					  </ui-select-choices>
+  				</ui-select>        
+
+              </td>
+				
+				
+				 <td>
+
+				 	{{pn.selected.name}}
+
+				 
+
+
+				 <select name="mySelect" id="mySelect"
+                    ng-options="option.name for option in data.availableOptions track by option.id"
+                     ng-model="data.selectedOption"  direselect >
+                 </select>
+				
+				</td>
+				<td>
+				  <input type="text" ng-model="product.quantity" />
+				</td>
+				<td>
+				  <input type="text" ng-model="product.delivery" />
+				
+				</td>
+				<td>
+				<input type="text" ng-model="product.mark" placeholder="备注" />
+			</td>
+			 <td><a ng-show="$index!=0" style="color:red;" ng-click="del($index)">移除</a></td>
+				
+			</tr>
+			
+		 
+
+		</table>
+	        <button ng-click="add()">增加一个</button>
+
+	         <button ng-click="show()">show</button>
+
+	
+	       
+		
+		
+		<script>
+		
+		
+		
+		</script>
+		
+		
+	
+	
+
+</body>
+</html>

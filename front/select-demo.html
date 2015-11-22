@@ -1,0 +1,149 @@
+<!doctype html>
+<html ng-app="demo">
+<head>
+<meta charset="utf-8"/>
+
+      <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+             
+            <script type="text/javascript" src="../js/angular.min.js"></script>
+            <script type="text/javascript" src="../js/angular-touch.min.js"></script>
+            <script type="text/javascript" src="../js/angular-sanitize.min.js"></script>
+ 		
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.css">
+
+  <!-- ui-select files -->
+  <script src="../js/select/select.js"></script>
+  <link rel="stylesheet" href="../js/select/select.css">
+
+  <script src="../js/select/demo.js"></script>
+
+  <!-- Select2 theme -->
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/select2/3.4.5/select2.css">     
+              	
+
+</head>
+
+
+<body>
+
+<div class="conainer">
+	<p>询价</p>
+	
+		<div class="form-group">
+		   <label>供应商：富昌电子</label>		
+	     </div>
+
+		<br/>
+		
+		<button type="submit" class="btn btn-primary">询价</button>
+		<p>
+	
+	  <div ng-controller="DemoCtrl">
+
+	  	
+
+		<table class="table" >
+			<tr>
+				<td>料号</td>
+				<td>料号</td>
+				<td>制造商</td>
+				<td>数量</td>
+				<td>交期</td>
+				<td>备注</td>
+				<td>caozuo</td>
+			</tr>
+			
+			<tr ng-repeat="product in products">
+			<!-- 	<td>
+				 
+                <input type="text" ng-model-onblur ng-model="selectedCountry.originalObject.name"  ng-change="change()"/>
+               </td> -->
+
+				<td>
+<!-- 
+                 <angucomplete-alt id="ex1"
+              placeholder="Search pn"
+              pause="100"
+              selectedobject="selectedCountry"
+              localdata="pns"
+              searchfields="name"
+              titlefield="name"
+              minlength="1"
+              inputclass="form-control form-control-small" /> -->
+
+                 <ui-select ng-model="country.selected" theme="selectize" ng-disabled="disabled" style="width: 300px;" title="Choose a country">
+    				<ui-select-match placeholder="Select or search a country in the list...">{{$select.selected.name}}</ui-select-match>
+   					 <ui-select-choices repeat="country in countries | filter: $select.search">
+      					<span ng-bind-html="country.name | highlight: $select.search"></span>
+     					 <small ng-bind-html="country.code | highlight: $select.search"></small>
+  					  </ui-select-choices>
+  				</ui-select>
+
+
+                   <!--  <angucomplete id="ex1"
+              placeholder="Search pn"
+              pause="100"
+              selectedobject="selectedPN"
+              url="http://myserver.com/search?part=
+              searchfields="name"
+              titlefield="name"
+              minlength="1"
+              inputclass="form-control form-control-small"/> -->
+
+              </td>
+              <td><p>Selected: {{country.selected}}</p></td>
+				
+				
+				 <td>
+				 <select name="mySelect" id="mySelect"
+                    ng-options="option.name for option in data.availableOptions track by option.id"
+                     ng-model="data.selectedOption"  ></select>
+				
+				</td>
+				<td>
+				  <input type="text" ng-model="product.quantity" />
+				</td>
+				<td>
+				  <input type="text" ng-model="product.delivery" />
+				
+				</td>
+				<td>
+				<input type="text" ng-model="product.mark" placeholder="备注" />
+			</td>
+			 <td><a ng-show="$index!=0" style="color:red;" ng-click="del($index)">移除</a></td>
+				
+			</tr>
+			
+		 
+
+		</table>
+	        <button ng-click="add()">增加一个</button>
+
+	         <button ng-click="show()">show</button>
+
+	
+
+                 <ui-select ng-model="country.selected" theme="selectize" ng-disabled="disabled" style="width: 300px;" title="Choose a country">
+    				<ui-select-match placeholder="Select or search a country in the list...">{{$select.selected.name}}</ui-select-match>
+   					 <ui-select-choices repeat="country in countries | filter: $select.search">
+      					<span ng-bind-html="country.name | highlight: $select.search"></span>
+     					 <small ng-bind-html="country.code | highlight: $select.search"></small>
+  					  </ui-select-choices>
+  				</ui-select>
+
+  				<p>Selected: {{country.selected}}</p>
+	
+		
+		
+		<script>
+		
+		
+		
+		</script>
+		
+		
+	
+	
+
+</body>
+</html>

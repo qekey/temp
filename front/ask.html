@@ -1,0 +1,84 @@
+<!doctype html>
+<html ng-app ng-controller="MainCtrl">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<script src="../js/in.js"></script>
+	<script type="text/javascript">
+		In.ready('angular','bootstrapcss3', function () {
+
+				}
+		)
+		function MainCtrl($scope) {
+			$scope.phones = [
+				{
+					"pn": "Nexus S",
+					"number": "Fast just got faster with Nexus S."
+				},
+				{
+					"pn": "Nexus S",
+					"number": "Fast just got faster with Nexus S."
+				}
+			];
+			$scope.addNewline = function ($scope) {
+				console.log("i am working 我是增加按钮")
+			}
+			$scope.newAsk = function ($scope) {
+				console.log("i am newAsk 我是询价按钮")
+			}
+			$scope.addNewlinedb = function ($scope) {
+				console.log("i am workingsb 我是增加按钮")
+			}
+			$scope.newAskdb = function ($scope) {
+				console.log("i am newAsksb 我是询价按钮")
+			}
+			$scope.copy = function () {
+				console.log("i am not work , i don't know way ")
+			}
+		}
+	</script>
+</head>
+<body>
+
+<div class="conainer">
+	<p>询价：</p>
+	<form class="form-inline">
+		<div class="form-group">
+		<label>供应商：富昌电子{{"asdasd"}}</label>
+		
+	     </div>
+		<br/>
+		
+		<button type="submit" class="btn btn-primary"  ng-click="newAsk()"  ng-dblclick="newAskdb()">询价</button>
+		<p>
+		<input type="text" ng-copy="copy()" name="aaa" ng-init=""  />
+		<table class="table">
+			<tr>
+				<td>料号</td>
+				<td>数量</td>
+				<td>交期</td>
+				<td>备注</td>
+			</tr>
+			<tr>
+				<td><button  ng-click="addNewline()"  ng-dblclick="addNewlinedb()" >新增</button></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr ng-repeat="phone in phones">
+				<td>{{phone.pn}}</td>
+				<td>
+					{{phone.number}}
+				</td>
+				<td></td>
+				<td><input type="text" class="form-control" id="exampleInputAmount" placeholder="备注"></td>
+				
+			</tr>
+
+		</table>
+	</form>
+	
+</div>
+</body>
+</html>
