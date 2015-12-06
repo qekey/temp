@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module("inquiry-app", ["ngSanitize", "ngTouch", "angucomplete-alt"]);
+var app = angular.module("inquiry-app", ["ngSanitize", "ngTouch", "angucomplete-alt",'xw-select']);
 
 app.controller('InquiryListController', function ($scope, $http) {
 
@@ -87,16 +87,28 @@ app.controller('InquiryController', function ($scope, $http) {
         console.log("selected",data);
         if (data) {
             $scope.requiry.pn = data.title;
-            $scope.requiry.mfs = data.title;
+            $scope.pnChange();
+
         }
     }
     $scope.add = function (pn) {
         return "zzzzzzzzzzzzz" + pn
     }
-    $scope.pnChange = function (requiry) {
+
+
+    $scope.selected = function (data) {
+        console.log("!!!1")
+        console.log(data);
+        if (data) {
+            $scope.requiry.pn = data.title;
+            $scope.pnChange();
+        }
+    }
+
+    $scope.pnChange = function () {
 
         $http({
-            url: 'http://192.168.1.103:8080/demo-service/api/inventory/find?pn=' + requiry.pn,
+            url: 'http://192.168.1.103:8080/demo-service/api/inventory/find?pn=' + $scope.requiry.pn,
             method: 'GET'
         }).success(function (data, header, config, status) {
             //响应成功
@@ -106,15 +118,14 @@ app.controller('InquiryController', function ($scope, $http) {
             //处理响应失败
         });
 
-        var flag = requiry.flag;
+        var flag = $scope.requiry.flag;
         if (flag == 'init') {
             var obj = {flag: 'init'};
             $scope.requirys.push(obj);
-            requiry.flag = null;
-
-
+            $scope.requiry.flag = null;
         }
     }
+
 
 });
 

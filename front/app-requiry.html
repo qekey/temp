@@ -10,6 +10,8 @@
     <script type="text/javascript" src="../js/angular-touch.min.js"></script>
     <script type="text/javascript" src="../js/angucomplete-alt.js"></script>
      <script type="text/javascript" src="../js/app-requiry.js"></script>
+    <script type="text/javascript" src="../js/xw-select.js"></script>
+
     <style>
         .red{
     color: red;
@@ -47,8 +49,8 @@
 			</tr>
 			
 			<tr ng-repeat="requiry in requirys"   ng-controller="InquiryController" >
-			<td ng-class="checkClass(requiry.mfs)">
-			{{check(requiry.mfs)}}
+			<td ng-class="checkClass(requiry.relevant)">
+			{{check(requiry.relevant)}}
             </td>
 
 				<td>
@@ -92,16 +94,9 @@
 
 				 	{{add(requiry.pn)}}
 
- 				<div><angucomplete-alt id="mfs"
-                                       placeholder="Search pn"
-                                       pause="400"
-                                       selected-object="selected"
-                                       remote-url="http://192.168.1.103:8080/demo-service/api/pn_list/find?pn="
-                                       initial-value=requiry.mfs
-                                       title-field="name"
-                                       description-field="code"
-                                       input-class="form-control form-control-small"
-                        /></div>
+ 				<div>
+                    <xw-select model="requiry.mfr"  local-data="requiry.relevant"  placeholder="search......."></xw-select>
+ </div>
                
 
 				
