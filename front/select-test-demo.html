@@ -1,0 +1,54 @@
+<!doctype html>
+<html ng-app="demo">
+<head>
+<meta charset="utf-8"/>
+
+      <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+             
+            <script type="text/javascript" src="../js/angular.min.js"></script>
+            <script type="text/javascript" src="../js/angular-touch.min.js"></script>
+            <script type="text/javascript" src="../js/angular-sanitize.min.js"></script>
+ 		
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.css">
+
+  <!-- ui-select files -->
+  <script src="../js/select/select.js"></script>
+  <link rel="stylesheet" href="../js/select/select.css">
+
+  <script src="../js/select/demo.js"></script>
+
+  <!-- Select2 theme -->
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/select2/3.4.5/select2.css">     
+              	
+
+</head>
+
+
+<body>
+
+<script language="javascript">  
+    function changeF()  
+    {  
+       document.getElementById('makeupCo').value=  
+       document.getElementById('makeupCoSe').options[document.getElementById('makeupCoSe').selectedIndex].value;  
+    }  
+</script>  
+  
+<span style="position:absolute;border:1pt solid #c1c1c1;overflow:hidden;width:188px;  
+    height:19px;clip:rect(-1px 190px 190px 170px);">  
+<select name="makeupCoSe" id="makeupCoSe" style="width:190px;height:20px;margin:-2px;" >  
+    <option id='1' value='digikey'>digikey</option>  
+    <option id='2' value='mouser'>mouser</option>  
+    <option id='3' value='element'>element</option>  
+</select>  
+</span>  
+<span style="position:absolute;border-top:1pt solid #c1c1c1;border-left:1pt   
+    solid #c1c1c1;border-bottom:1pt solid #c1c1c1;width:170px;height:19px;">  
+    <input type="text" name="makeupCo" id="makeupCo" value="请选择或输入" style="width:170px;height:15px;border:0pt;">  
+</span>  
+		
+	
+	
+
+</body>
+</html>

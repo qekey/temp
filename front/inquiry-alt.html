@@ -64,8 +64,13 @@
               minlength="1"
               inputclass="form-control form-control-small" /> -->
 
-                <div angucomplete-alt id="ex1" placeholder="Search people" pause="100" selected-object="selectePn" local-data="pns" search-fields="name" title-field="name"  input-class="form-control form-control-small"   auto-match="true">
-               </div>
+               <!--  <div angucomplete-alt id="ex1" placeholder="Search people" pause="100" selected-object="selectePn" local-data="pns" search-fields="name" title-field="name"  input-class="form-control form-control-small"   auto-match="true">
+               </div> -->
+
+               {{product.pn}}
+
+               <div angucomplete-alt id="ex1" placeholder="Search pn" pause="100" selected-object="product.pn" remote-url="http://localhost:8080/demo-service/api/pn_list/find?pn=" search-fields="name" title-field="name"  input-class="form-control form-control-small"   auto-match="true"   initial-value="countrySelected9">
+               </div> 
 
 
                    <!--  <angucomplete id="ex1"

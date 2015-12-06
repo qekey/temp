@@ -45,8 +45,8 @@
 
     // Set the default template for this directive
     $templateCache.put(TEMPLATE_URL,
-        '<div class="angucomplete-holder" ng-class="{\'angucomplete-dropdown-visible\': showDropdown}">' +
-        '  <input id="{{id}}_value" name="{{inputName}}" ng-class="{\'angucomplete-input-not-empty\': notEmpty}" ng-model="searchStr" ng-disabled="disableInput" type="{{inputType}}" placeholder="{{placeholder}}" maxlength="{{maxlength}}" ng-focus="onFocusHandler()" class="{{inputClass}}" ng-focus="resetHideResults()" ng-blur="hideResults($event)" autocapitalize="off" autocorrect="off" autocomplete="off" ng-change="inputChangeHandler(searchStr)"/>' +
+        '<div class="angucomplete-holder" >' +
+        '  <input id="{{id}}_value" name="{{inputName}}"  ng-model="searchStr"  type="{{inputType}}"     />' +
         '  <div id="{{id}}_dropdown" class="angucomplete-dropdown" ng-show="showDropdown">' +
         '    <div class="angucomplete-searching" ng-show="searching" ng-bind="textSearching"></div>' +
         '    <div class="angucomplete-searching" ng-show="!searching && (!results || results.length == 0)" ng-bind="textNoResults"></div>' +
@@ -55,8 +55,8 @@
         '        <img ng-if="result.image && result.image != \'\'" ng-src="{{result.image}}" class="angucomplete-image"/>' +
         '        <div ng-if="!result.image && result.image != \'\'" class="angucomplete-image-default"></div>' +
         '      </div>' +
-        '      <div class="angucomplete-title" ng-if="matchClass" ng-bind-html="result.title"></div>' +
-        '      <div class="angucomplete-title" ng-if="!matchClass">{{ result.title }}</div>' +
+        '      <div class="angucomplete-title" ng-if="matchClass" ng-bind-html="result.title"+""></div>' +
+        '      <div class="angucomplete-title" ng-if="!matchClass">{{ result.title }}---</div>' +
         '      <div ng-if="matchClass && result.description && result.description != \'\'" class="angucomplete-description" ng-bind-html="result.description"></div>' +
         '      <div ng-if="!matchClass && result.description && result.description != \'\'" class="angucomplete-description">{{result.description}}</div>' +
         '    </div>' +
@@ -253,12 +253,8 @@
           event.preventDefault();
         }
         else if (which === KEY_DW) {
-          event.preventDefault();
-          if (!scope.showDropdown && scope.searchStr && scope.searchStr.length >= minlength) {
-            initResults();
-            scope.searching = true;
-            searchTimerComplete(scope.searchStr);
-          }
+          
+       
         }
         else if (which === KEY_ES) {
           clearResults();
@@ -274,7 +270,7 @@
           if (!scope.searchStr || scope.searchStr === '') {
             scope.showDropdown = false;
           } else if (scope.searchStr.length >= minlength) {
-            initResults();
+            // initResults();
 
             if (searchTimer) {
               $timeout.cancel(searchTimer);
@@ -289,7 +285,7 @@
 
           if (validState && validState !== scope.searchStr && !scope.clearSelected) {
             scope.$apply(function() {
-              callOrAssign();
+              // callOrAssign();
             });
           }
         }
@@ -368,12 +364,12 @@
               updateInputField();
             });
 
-            if (isScrollOn) {
-              row = dropdownRow();
-              if (dropdownHeight() < row.getBoundingClientRect().bottom) {
-                dropdownScrollTopTo(dropdownRowOffsetHeight(row));
-              }
-            }
+            // if (isScrollOn) {
+            //   row = dropdownRow();
+            //   if (dropdownHeight() < row.getBoundingClientRect().bottom) {
+            //     dropdownScrollTopTo(dropdownRowOffsetHeight(row));
+            //   }
+            // }
           }
         } else if (which === KEY_UP && scope.results) {
           event.preventDefault();
@@ -676,9 +672,12 @@
 
       scope.selectResult = function(result) {
         // Restore original values
+
+        alert(result);
         if (scope.matchClass) {
           result.title = extractTitle(result.originalObject);
           result.description = extractValue(result.originalObject, scope.descriptionField);
+
         }
 
         if (scope.clearSelected) {

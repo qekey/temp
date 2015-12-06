@@ -3,21 +3,14 @@
 <head>
 <meta charset="utf-8"/>
 
-      <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">             
+          <link rel="stylesheet" href="../css/bootstrap.css">  
+          <link rel="stylesheet" href="alt/angucomplete-alt.css">           
           <script type="text/javascript" src="../js/angular.min.js"></script>
           <script type="text/javascript" src="../js/angular-touch.min.js"></script>
           <script type="text/javascript" src="../js/angular-sanitize.min.js"></script>
-          <script type="text/javascript" src="../js/inquiry-app.js"></script>
-          <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.css">
-
-  		<!-- ui-select files -->
-  		  <script src="../js/select/select.js"></script>
-  		  <link rel="stylesheet" href="../js/select/select.css">
-
-  		<!-- Select2 theme -->
- 		<link rel="stylesheet" href="../js/select/select.css">  
-              	
-
+          <script type="text/javascript" src="../js/xw-select.js"></script>
+          <script type="text/javascript" src="../js/xw-autocomplete.js"></script>
+          <script type="text/javascript" src="../js/app-requiry.js"></script>
 </head>
 
 
@@ -35,7 +28,7 @@
 		<button type="submit" class="btn btn-primary">询价</button>
 		<p>
 	
-	  <div ng-controller="InquiryController">
+	  <div ng-controller="InquiryListController">
 
 	  	
 
@@ -50,16 +43,30 @@
 				<td>caozuo</td>
 			</tr>
 			
-			<tr ng-repeat="product in products">
+			<tr ng-repeat="requiry in requirys"   ng-controller="InquiryController">
 			<!-- 	<td>
 				 
                 <input type="text" ng-model-onblur ng-model="selectedCountry.originalObject.name"  ng-change="change()"/>
                </td> -->
 
-				<td>
+				<td>		
+				   
+				    <!-- <x-autocomplete model="product.mfs" local_data="product.others" placeholder="please input pn">
+
+				    </x-autocomplete> -->
+
+
+
+					<!--  <input type="txt" ng-model="requiry.pn"  ng-keypress="pnChangeForEnter($event,requiry)"  ele-input/> -->
+
+					 <xw-autocomplete model="requiry.pn" placeholder="please input pn" remote_url="http://localhost:8080/demo-service/api/pn_list/find?pn="  complete="pnSelected()"/>
+
+
 
 					
-					 <input type="txt" ng-model="product.pn" pn-input/>
+
+
+					<!--  <ele-input ng-model="requiry.pn" blur="change($event)"> -->
 
 
 
@@ -81,9 +88,9 @@
 				<!--   <select  ng-options="m.name as m.name for m in mfrs"  ng-model="product.mfr">
                  </select>  -->
 
-                <!-- <input list="mfrlist" ng-model="product.mfr" mfs-input>
+                 <!-- <input list="mfrlist" ng-model="requiry.mfr">
                   <datalist id="mfrlist">
-                  	<option ng-repeat="mfr in mfrs"> {{mfr.name}}</option>
+                  	<option ng-repeat="rel in requiry.relevant"><p> {{rel.mfr}}<p></br>{{rel.qty}}</option>
                   </datalist>
 
                  </input>   -->
@@ -94,31 +101,22 @@
 						</ul>
 
 					</div>
-
-
+ 
  -->
- 				<mfs-input model="product.mfr"  othermodel="product.other" placeholder="search......."></mfs-input> 
-                 <!--  <div>
-                  
-                   <mfs-input model="product.mfr" placeholder="search......."></mfs-input> 
-
-                 <div mfs-input>
-                   <input type="txt" ng-model="product.mfr" placeholder="xxxxxx" />
-                 </div>
-
-
-
-
-
-               </div> -->
-                 
+ 				<div>
+111
+ 					 <xw-select model="requiry.mfr"  local-data="requiry.relevant"  placeholder="search......."></xw-select>  
+ 			   </div>
+               
 
 				
 				</td>
 
 				<td>
+                  <div ng-style="display(requiry)">
+					{{requiry.flag}}
+				  </div>
 
-					{{product.mfr}}
 
 
 				<!-- 
@@ -130,22 +128,22 @@
   				  		</ui-select>  -->
 				</td>
 				<td>
-				  <input type="text" ng-model="product.quantity" />
+				  <input type="text" ng-model="requiry.qty" ng-style="display(requiry)"/>
 				</td>
 				<td>
-				  <input type="text" ng-model="product.delivery" />
+				  <input type="text" ng-model="requiry.delivery" ng-style="display(requiry)" />
 				
 				</td>
 				<td>
-				<input type="text" ng-model="product.mark" placeholder="备注" />
+				<input type="text" ng-model="requiry.mark" ng-style="display(requiry)" placeholder="备注" />
 			</td>
-			 <td><a ng-show="$index!=0" style="color:red;" ng-click="del($index)">移除</a></td>
+			 <td><a ng-show="delShow(requiry)" style="color:red;" ng-click="del($index)">移除</a></td>
 				
-			</tr>
+			</tr>		
 
 		</table>
-	        <button ng-click="add()">增加一个</button>
-	        <button ng-click="show()">show</button>
+	        <div>总数:{{requirys.length}}</div>
+	        <button ng-click="show()">询价</button>
 
 	
 	       
