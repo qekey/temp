@@ -5,25 +5,15 @@
 
     <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="alt/angucomplete-alt.css">
-
     <script type="text/javascript" src="../js/angular.min.js"></script>
-          <script type="text/javascript" src="../js/angular-sanitize.min.js"></script>
-<!--          <script type="text/javascript" src="../js/xw-select.js"></script>-->
+    <script type="text/javascript" src="../js/angular-sanitize.min.js"></script>
     <script type="text/javascript" src="../js/angular-touch.min.js"></script>
     <script type="text/javascript" src="../js/angucomplete-alt.js"></script>
-
-<!--
-          <script type="text/javascript" src="../js/xw-autocomplete.js"></script>
--->
-          <script type="text/javascript" src="../js/app-requiry.js"></script>
+     <script type="text/javascript" src="../js/app-requiry.js"></script>
 </head>
-
-
 <body>
-
 <div class="conainer">
 	<p>询价</p>
-	
 		<div class="form-group">
 		   <label>供应商：富昌电子</label>		
 	     </div>
@@ -103,28 +93,17 @@
 				 <td>
 
 				 	{{add(requiry.pn)}}
-				<!--   <select  ng-options="m.name as m.name for m in mfrs"  ng-model="product.mfr">
-                 </select>  -->
 
-                 <!-- <input list="mfrlist" ng-model="requiry.mfr">
-                  <datalist id="mfrlist">
-                  	<option ng-repeat="rel in requiry.relevant"><p> {{rel.mfr}}<p></br>{{rel.qty}}</option>
-                  </datalist>
-
-                 </input>   -->
-                 <!-- <input list="mfrlist" ng-model="product.mfr"  com>
-                 <div>
-						<ul >
-							<li ng-repeat="mfr in mfrs">{{mfr.name}}</li>	
-						</ul>
-
-					</div>
- 
- -->
- 				<div>
-111
- 					 <xw-select model="requiry.mfr"  local-data="requiry.relevant"  placeholder="search......."></xw-select>  
- 			   </div>
+ 				<div><angucomplete-alt id="mfs"
+                                       placeholder="Search pn"
+                                       pause="400"
+                                       selected-object="selected"
+                                       remote-url="http://192.168.1.103:8080/demo-service/api/pn_list/find?pn="
+                                       initial-value=requiry.mfs
+                                       title-field="name"
+                                       description-field="code"
+                                       input-class="form-control form-control-small"
+                        /></div>
                
 
 				
