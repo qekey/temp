@@ -68,14 +68,26 @@ app.controller('InquiryController', function ($scope, $http) {
     $scope.pnSelected = function () {
         $scope.pnChange($scope.requiry);
     }
-
+    $scope.checkClass=function(data){
+        console.log("change ----------------"+data)
+        if(!data){
+            return "red";
+        }else{
+            return "green"
+        }
+    }
+    $scope.check=function(data){
+        if(!data){
+            return "!"
+        }else{
+            return ""
+        }
+    }
     $scope.selected = function (data) {
-        console.log("!!!1")
-        console.log(data);
+        console.log("selected",data);
         if (data) {
             $scope.requiry.pn = data.title;
             $scope.requiry.mfs = data.title;
-
         }
     }
     $scope.add = function (pn) {

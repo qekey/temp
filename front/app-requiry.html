@@ -10,6 +10,14 @@
     <script type="text/javascript" src="../js/angular-touch.min.js"></script>
     <script type="text/javascript" src="../js/angucomplete-alt.js"></script>
      <script type="text/javascript" src="../js/app-requiry.js"></script>
+    <style>
+        .red{
+    color: red;
+        }
+        .green{
+            /*background-color: green;*/
+        }
+    </style>
 </head>
 <body>
 <div class="conainer">
@@ -38,11 +46,10 @@
 				<td>caozuo</td>
 			</tr>
 			
-			<tr ng-repeat="requiry in requirys"   ng-controller="InquiryController">
-			<!-- 	<td>
-				 
-                <input type="text" ng-model-onblur ng-model="selectedCountry.originalObject.name"  ng-change="change()"/>
-               </td> -->
+			<tr ng-repeat="requiry in requirys"   ng-controller="InquiryController" >
+			<td ng-class="checkClass(requiry.mfs)">
+			{{check(requiry.mfs)}}
+            </td>
 
 				<td>
                     {{requiry.pn}}  !
@@ -60,21 +67,12 @@
                              pause="400"
                              selected-object="selected"
                              remote-url="http://192.168.1.103:8080/demo-service/api/pn_list/find?pn="
-
                              initial-value=requiry.pn
-
                              title-field="name"
                              description-field="code"
-
                              input-class="form-control form-control-small"
-
                         />
-
-
-					
-
-
-					<!--  <ele-input ng-model="requiry.pn" blur="change($event)"> -->
+                    <!--  <ele-input ng-model="requiry.pn" blur="change($event)"> -->
 
 
 
