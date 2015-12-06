@@ -3,13 +3,18 @@
 <head>
 <meta charset="utf-8"/>
 
-          <link rel="stylesheet" href="../css/bootstrap.css">  
-          <link rel="stylesheet" href="alt/angucomplete-alt.css">           
-          <script type="text/javascript" src="../js/angular.min.js"></script>
-          <script type="text/javascript" src="../js/angular-touch.min.js"></script>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="alt/angucomplete-alt.css">
+
+    <script type="text/javascript" src="../js/angular.min.js"></script>
           <script type="text/javascript" src="../js/angular-sanitize.min.js"></script>
-          <script type="text/javascript" src="../js/xw-select.js"></script>
+<!--          <script type="text/javascript" src="../js/xw-select.js"></script>-->
+    <script type="text/javascript" src="../js/angular-touch.min.js"></script>
+    <script type="text/javascript" src="../js/angucomplete-alt.js"></script>
+
+<!--
           <script type="text/javascript" src="../js/xw-autocomplete.js"></script>
+-->
           <script type="text/javascript" src="../js/app-requiry.js"></script>
 </head>
 
@@ -49,8 +54,8 @@
                 <input type="text" ng-model-onblur ng-model="selectedCountry.originalObject.name"  ng-change="change()"/>
                </td> -->
 
-				<td>		
-				   
+				<td>
+                    {{requiry.pn}}  !
 				    <!-- <x-autocomplete model="product.mfs" local_data="product.others" placeholder="please input pn">
 
 				    </x-autocomplete> -->
@@ -59,8 +64,21 @@
 
 					<!--  <input type="txt" ng-model="requiry.pn"  ng-keypress="pnChangeForEnter($event,requiry)"  ele-input/> -->
 
-					 <xw-autocomplete model="requiry.pn" placeholder="please input pn" remote_url="http://localhost:8080/demo-service/api/pn_list/find?pn="  complete="pnSelected()"/>
+					<!-- <xw-autocomplete model="requiry.pn" placeholder="please input pn" remote_url="http://localhost:8080/demo-service/api/pn_list/find?pn="  complete="pnSelected()"/>
+-->		<angucomplete-alt id="members"
+                             placeholder="Search pn"
+                             pause="400"
+                             selected-object="selected"
+                             remote-url="http://192.168.1.103:8080/demo-service/api/pn_list/find?pn="
 
+                             initial-value=requiry.pn
+
+                             title-field="name"
+                             description-field="code"
+
+                             input-class="form-control form-control-small"
+
+                        />
 
 
 					
@@ -84,7 +102,7 @@
 				
 				 <td>
 
-				 	
+				 	{{add(requiry.pn)}}
 				<!--   <select  ng-options="m.name as m.name for m in mfrs"  ng-model="product.mfr">
                  </select>  -->
 

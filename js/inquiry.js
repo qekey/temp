@@ -33,10 +33,21 @@
            alert($scope.products[0]);
         }
 
-         $scope.change = function () {
-           console.log("---------------");
+         $scope.change = function (data) {
+           console.log(data,"---------------");
         }
-
+         $scope.selected=function(data){
+        	 
+        	 console.log("!!!1")
+        	 //console.log(product)
+        	 
+        	  console.log(data)
+        	 
+        	 /*if(data){
+        		 console.log(data.title)
+        	 	product.pn= data.title
+        	 }*/
+        }
 
     });
 

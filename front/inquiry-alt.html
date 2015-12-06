@@ -1,136 +1,108 @@
 <!doctype html>
 <html ng-app="inquiry">
-<head>
-<meta charset="utf-8"/>
 
-      <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
-      <link rel="stylesheet" href="alt/angucomplete-alt.css">
-            
-             
-            <script type="text/javascript" src="../js/angular.min.js"></script>
-            <script type="text/javascript" src="../js/angular-touch.min.js"></script>
-             <script type="text/javascript" src="alt/angucomplete-alt.js"></script>  
-         
-              <script type="text/javascript" src="../js/inquiry.js"></script>          
-              	
+	<head>
+		<meta charset="utf-8" />
 
-</head>
+		<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<link rel="stylesheet" href="alt/angucomplete-alt.css">
 
+		<script type="text/javascript" src="../js/angular.min.js"></script>
+		<script type="text/javascript" src="../js/angular-touch.min.js"></script>
+		<script type="text/javascript" src="../js/angucomplete-alt.js"></script>
 
-<body>
+		<script type="text/javascript" src="../js/inquiry.js"></script>
 
-<div class="conainer">
-	<p>询价</p>
-	
-		<div class="form-group">
-		   <label>供应商：富昌电子</label>		
-	     </div>
+	</head>
 
-		<br/>
-		
-		<button type="submit" class="btn btn-primary">询价</button>
-		<p>
-	
-	  <div ng-controller="InquiryController">
+	<body>
 
-	  	
+		<div class="conainer">
+			<p>询价</p>
 
-		<table class="table" >
-			<tr>
-				<td>料号</td>
-				<td>料号</td>
-				<td>制造商</td>
-				<td>数量</td>
-				<td>交期</td>
-				<td>备注</td>
-				<td>caozuo</td>
-			</tr>
-			
-			<tr ng-repeat="product in products">
-			<!-- 	<td>
+			<div class="form-group">
+				<label>供应商：富昌电子</label>
+			</div>
+
+			<br/>
+
+			<button type="submit" class="btn btn-primary">询价</button>
+			<p>
+
+				<div ng-controller="InquiryController">
+
+					<table class="table">
+						<tr>
+							<td>料号</td>
+							<td>料号</td>
+							<td>制造商</td>
+							<td>数量</td>
+							<td>交期</td>
+							<td>备注</td>
+							<td>caozuo</td>
+						</tr>
+
+						<tr ng-repeat="product in products">
+							<!-- 	<td>
 				 
                 <input type="text" ng-model-onblur ng-model="selectedCountry.originalObject.name"  ng-change="change()"/>
                </td> -->
 
-				<td>
-<!-- 
-                 <angucomplete-alt id="ex1"
+							<td>
+							{{product.pn}}
+							
+							
+		
+
+							<angucomplete-alt id="members"
               placeholder="Search pn"
-              pause="100"
-              selectedobject="selectedCountry"
-              localdata="pns"
-              searchfields="name"
-              titlefield="name"
-              minlength="1"
-              inputclass="form-control form-control-small" /> -->
+              pause="400"
+              selected-object="selected"
+              remote-url="http://192.168.1.103:8080/demo-service/api/pn_list/find?pn="
+ 	           	
+ 	           	initial-value=product.pn
+              
+              title-field="name"
+              description-field="code"
+              
+              input-class="form-control form-control-small"
+             
+              />
+<!-- input-changed="change"  product.pn-->							
+						<!--	image-field="profilePic"  remote-url-data-field="results"-->
+							
+							</td>
 
-               <!--  <div angucomplete-alt id="ex1" placeholder="Search people" pause="100" selected-object="selectePn" local-data="pns" search-fields="name" title-field="name"  input-class="form-control form-control-small"   auto-match="true">
-               </div> -->
+							<td>
+								<div>
+									{{selectePn.originalObject.name}}
+								</div>
 
-               {{product.pn}}
+								<select name="mySelect" id="mySelect" ng-options="option.name for option in data.availableOptions track by option.id" ng-model="data.selectedOption"></select>
 
-               <div angucomplete-alt id="ex1" placeholder="Search pn" pause="100" selected-object="product.pn" remote-url="http://localhost:8080/demo-service/api/pn_list/find?pn=" search-fields="name" title-field="name"  input-class="form-control form-control-small"   auto-match="true"   initial-value="countrySelected9">
-               </div> 
+							</td>
+							<td>
+								<input type="text" ng-model="product.quantity" />
+							</td>
+							<td>
+								<input type="text" ng-model="product.delivery" />
 
+							</td>
+							<td>
+								<input type="text" ng-model="product.mark" placeholder="备注" />
+							</td>
+							<td><a ng-show="$index!=0" style="color:red;" ng-click="del($index)">移除</a></td>
 
-                   <!--  <angucomplete id="ex1"
-              placeholder="Search pn"
-              pause="100"
-              selectedobject="selectedPN"
-              url="http://myserver.com/search?part=
-              searchfields="name"
-              titlefield="name"
-              minlength="1"
-              inputclass="form-control form-control-small"/> -->
+						</tr>
 
-              </td>
-				
-				
-				 <td>
-				 	<div>
-                       {{selectePn.originalObject.name}}
-                     </div>
-				 	
+					</table>
+					<button ng-click="add()">增加一个</button>
 
-				 <select name="mySelect" id="mySelect"
-                    ng-options="option.name for option in data.availableOptions track by option.id"
-                     ng-model="data.selectedOption"  ></select>
-				
-				</td>
-				<td>
-				  <input type="text" ng-model="product.quantity" />
-				</td>
-				<td>
-				  <input type="text" ng-model="product.delivery" />
-				
-				</td>
-				<td>
-				<input type="text" ng-model="product.mark" placeholder="备注" />
-			</td>
-			 <td><a ng-show="$index!=0" style="color:red;" ng-click="del($index)">移除</a></td>
-				
-			</tr>
-			
-		 
+					<button ng-click="show()">show</button>
 
-		</table>
-	        <button ng-click="add()">增加一个</button>
+					<script>
+					</script>
 
-	         <button ng-click="show()">show</button>
+	</body>
 
-	
-	
-		
-		
-		<script>
-		
-		
-		
-		</script>
-		
-		
-	
-	
-
-</body>
 </html>
